@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../../assets/logo.svg'
+---
+
+
+<div class="w-full py-2 text-[#D4F4FF] bg-primary">
+  <div class="  flex  mx-12 justify-between ">
+    <div class="flex gap-4">
+     <div class="w-[64px]">
+       <Image src={logo} alt='logo'></Image>
+     </div>
+     <div>
+       <h3 class="text-2xl font-semibold text-white">বাংলাদেশ ইসলামী ছাত্রশিবির</h3>
+       <h4 class=" text-[#D4F4FF]">চট্টগ্রাম বিশ্ববিদ্যালয়</h4>
+     </div>
+    </div>
+   
+   <div class="flex items-center ">
+       <a href="/"><span class="box">
+             
+        হোম</span></a>
+       <a href="/start-learning/"><span class="box">
+             
+        সংক্ষিপ্ত পরিচিতি</span></a>
+       <a href="/tutorial/"><span class="box">
+             
+        দায়িত্বশীলবৃন্দ</span></a>
+       <a href="/about/"><span class="box">
+             
+        ব্লগ</span></a>
+       
+       
+   </div>
+       
+   </div>
+</div>
+  <style>
+   /* From Uiverse.io by Cornerstone-04 */ 
+.box {
+
+  height: auto;
+  float: left;
+  transition: .5s linear;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding: 12px;
+  text-align: center;
+  margin: 0 5px;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.box:before {
+  position: absolute;
+  content: '';
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  border-bottom: 3px solid transparent;
+  border-left: 3px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(100%);
+}
+
+.box:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-top: 3px solid transparent;
+  border-right: 3px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+}
+
+
+
+.box:hover:before {
+  border-color: #D4F4FF;
+  height: 100%;
+  transform: translateX(0);
+  transition: .3s transform linear, .3s height linear .3s;
+}
+
+.box:hover:after {
+  border-color: #D4F4FF;
+  height: 100%;
+  transform: translateX(0);
+  transition: .3s transform linear, .3s height linear .5s;
+}
+
+
+  </style>
