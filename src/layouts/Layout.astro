@@ -1,4 +1,6 @@
 ---
+import Navbar from "../components/header/Navbar.astro";
+import SocialLink from "../components/header/SocialLink.astro";
 import "../styles/global.css";
 ---
 
@@ -12,9 +14,13 @@ import "../styles/global.css";
 		<title>Astro Basics</title>
 	</head>
 	<body >
+		<SocialLink></SocialLink>
+	<Navbar></Navbar>
 		<slot />
 	</body>
+	
 </html>
+
 
 <style>
 	html,

@@ -1,0 +1,179 @@
+---
+// Carousel.astro
+
+import { Image } from "astro:assets"
+import item1 from "../../assets/carousel-item/item-1.jpg"
+import item2 from "../../assets/carousel-item/item-2.jpg"
+---
+
+<div class="carousel-container  rounded-lg  overflow-hidden" id="carousel">
+  <!-- Carousel content will be mounted here -->
+   
+</div>
+
+<script>
+  // Define types for image data
+interface CarouselImage {
+  src: string;
+  alt: string;
+  title: string;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const carousel: HTMLElement | null = document.getElementById('carousel');
+  
+  if (!carousel) {
+    console.error('Carousel element not found');
+    return;
+  }
+  
+  // Define your carousel data
+  const images: CarouselImage[] = [
+    {
+      src: 'https://i.ibb.co.com/hxMqGts1/item-1.jpg',
+      alt: 'item 1',
+      title: 'Beautiful Landscape'
+    },
+    {
+      src: 'https://i.ibb.co.com/SDCg5zhB/item-2.jpg',
+      alt: 'item 1',
+      title: 'Beautiful Landscape'
+    },
+    {
+      src: 'https://i.ibb.co.com/hxMqGts1/item-1.jpg',
+      alt: 'item 1',
+      title: 'Beautiful Landscape'
+    },
+    {
+      src: 'https://i.ibb.co.com/SDCg5zhB/item-2.jpg',
+      alt: 'item 1',
+      title: 'Beautiful Landscape'
+    },
+  ];
+  
+
+  let currentIndex: number = 0;
+  let intervalId: number | null = null;
+  
+  // Create carousel HTML structure
+  const createCarousel = (): void => {
+    // Create main container elements
+    const carouselTrack: HTMLDivElement = document.createElement('div');
+    carouselTrack.className = 'relative';
+    
+    const carouselSlides: HTMLDivElement = document.createElement('div');
+    carouselSlides.className = 'overflow-hidden relative h-64';
+    
+    // Create image slides
+    images.forEach((image: CarouselImage, index: number) => {
+      const slide: HTMLDivElement = document.createElement('div');
+      slide.className = `absolute inset-0 transition-all duration-500 transform ${
+        index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
+      }`;
+      slide.setAttribute('data-index', index.toString());
+      
+      const img: HTMLImageElement = document.createElement('img');
+      img.src = image.src;
+      img.alt = image.alt;
+      img.className = 'brightness-80 h-full';
+      
+      const title: HTMLHeadingElement = document.createElement('h3');
+      title.className = 'text-white text-xl font-bold';
+      title.textContent = image.title;
+      
+      slide.appendChild(img);
+      
+      carouselSlides.appendChild(slide);
+    });
+    
+    // Create navigation arrows
+    const prevButton: HTMLButtonElement = document.createElement('button');
+    prevButton.className = 'absolute top-1/2 left-24 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition';
+    prevButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>`;
+    prevButton.addEventListener('click', prevSlide);
+    
+    const nextButton: HTMLButtonElement = document.createElement('button');
+    nextButton.className = 'absolute top-1/2 right-24 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition';
+    nextButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>`;
+    nextButton.addEventListener('click', nextSlide);
+    
+    // Append all elements to carousel
+    carouselTrack.appendChild(carouselSlides);
+    carouselTrack.appendChild(prevButton);
+    carouselTrack.appendChild(nextButton);
+    
+    carousel.appendChild(carouselTrack);
+  };
+  
+  // Navigation functions
+  const updateSlides = (): void => {
+    // Update slides visibility
+    const slides: NodeListOf<Element> = carousel.querySelectorAll('[data-index]');
+    slides.forEach((slide: Element) => {
+      const slideIndex: number = parseInt(slide.getAttribute('data-index') || '0');
+      if (slideIndex === currentIndex) {
+        slide.classList.remove('opacity-0', 'translate-x-full', '-translate-x-full');
+        slide.classList.add('opacity-100', 'translate-x-0');
+      } else if (slideIndex < currentIndex) {
+        slide.classList.remove('opacity-100', 'translate-x-0', 'translate-x-full');
+        slide.classList.add('opacity-0', '-translate-x-full');
+      } else {
+        slide.classList.remove('opacity-100', 'translate-x-0', '-translate-x-full');
+        slide.classList.add('opacity-0', 'translate-x-full');
+      }
+    });
+  };
+  
+  const nextSlide = (): void => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateSlides();
+    resetInterval();
+  };
+  
+  const prevSlide = (): void => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateSlides();
+    resetInterval();
+  };
+  
+  const goToSlide = (index: number): void => {
+    currentIndex = index;
+    updateSlides();
+    resetInterval();
+  };
+  
+  const startInterval = (): void => {
+    intervalId = window.setInterval(nextSlide, 5000);
+  };
+  
+  const resetInterval = (): void => {
+    if (intervalId !== null) {
+      clearInterval(intervalId);
+    }
+    startInterval();
+  };
+  
+  // Initialize carousel
+  createCarousel();
+  startInterval();
+  
+  // Clean up on disconnect (note: this return won't work in this context as is)
+  // In TypeScript/Astro context, we would need a proper cleanup mechanism
+  // This is just kept for reference from the original code
+  return () => {
+    if (intervalId !== null) clearInterval(intervalId);
+  };
+});
+</script>
+
+<style>
+  /* You can add additional styles here if needed */
+  .carousel-container {
+
+    /* Any custom styles not covered by Tailwind */
+  }
+</style>
