@@ -4,19 +4,22 @@ import logo from '../../../assets/logo.svg'
 ---
 
 
-<div class="w-full py-2 text-[#D4F4FF] bg-primary">
-  <div class="  flex items-center  mx-12 justify-between ">
-    <div class="flex items-center gap-4">
-     <div class="w-[62px]">
+<div class="w-full sticky top-0 h-18 z-10  text-secondary header">
+  <div class=" bg-primary absolute w-full h-full z-[-1] header-bg">
+
+  </div>
+  <div class="  flex items-center  mx-24 justify-between h-full header-content">
+    <div class="flex items-center gap-4 header-inner mt-[-68px]">
+     <div class="w-[96px] header-img">
        <Image src={logo} alt='logo'></Image>
      </div>
-     <div>
-       <h3 class="text-2xl font-semibold text-white">বাংলাদেশ ইসলামী ছাত্রশিবির</h3>
-       <h4 class=" text-[#D4F4FF] font-medium">চট্টগ্রাম বিশ্ববিদ্যালয়</h4>
+     <div class="header-text flex flex-col">
+       <h3 class="text-3xl font-semibold  ">বাংলাদেশ ইসলামী ছাত্রশিবির</h3>
+       <h4 class=" text-secondary text-xl font-medium">চট্টগ্রাম বিশ্ববিদ্যালয়</h4>
      </div>
     </div>
    
-   <div class="flex items-center ">
+   <div class="flex items-center text-xl header-menu ">
        <a href="/"><span class="box">
              
         হোম</span></a>
@@ -36,7 +39,69 @@ import logo from '../../../assets/logo.svg'
    </div>
 </div>
   <style>
-   /* From Uiverse.io by Cornerstone-04 */ 
+
+    :root{
+      --secondary:#d4f4ff
+    }
+    /* navbar animation */
+    .header-bg{
+      transform-origin: left top;
+      animation: shrink-header linear forwards;
+      animation-timeline: scroll();
+      animation-range: 52px 100px;
+
+    }
+    @keyframes shrink-header{
+      to{
+        transform: scaleY(0.8);
+      }
+    }
+    .header-img{
+      transform-origin: left top;
+      animation: shrink-image linear forwards;
+      animation-timeline: scroll();
+      animation-range: 0% 100px;
+
+    }
+    @keyframes shrink-image{
+      to{
+        transform: scale(0.6) translateY(76px);
+      }
+    }
+    .header-text{
+      color: black;
+      transform-origin: left top;
+      animation: shrink-text linear forwards;
+      animation-timeline: scroll();
+      animation-range: 0% 100px;
+
+    }
+    @keyframes shrink-text{
+      from{
+        gap: 6px;
+        color: black;
+      }
+      to{
+       gap: 0px;
+        color: white;
+        transform: scale(0.8) translateX(-52px)  translateY(48px);
+      }
+    }
+    .header-menu{
+      transform-origin: left top;
+      animation: shrink-menu linear forwards;
+      animation-timeline: scroll();
+      animation-range: 52px 100px;
+
+    }
+    @keyframes shrink-menu{
+      to{
+        transform: scale(0.8) translateX(96px);
+      }
+    }
+
+
+   /* menu item animation */ 
 .box {
 
   height: auto;

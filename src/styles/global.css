@@ -3,6 +3,7 @@
 
 @theme {
   --color-primary: #0d7eb9;
+  --color-secondary: #d4f4ff;
   --font-sans: "Noto Sans Bengali", sans-serif;
   /* --font-weight-semibold: 500; */
 }

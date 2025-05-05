@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components'
+import PrimaryButton from '../../buttons/PrimaryButton.astro'
 ---
 
 <div class="flex justify-end items-center mx-12 my-2">
@@ -7,7 +8,7 @@ import { Icon } from 'astro-icon/components'
     
   
     <a href="https://www.youtube.com/@cushibir77" target="_blank" class="socialContainer rounded bg-[#1877F2]  p-1 containerone">
-      <Icon class="socialSvg text-white  " size='28px' name="bxl:facebook"></Icon>
+      <Icon class="socialSvg text-white  " size='22px' name="bxl:facebook"></Icon>
     </a>
     <a href="https://www.youtube.com/@cushibir77" target="_blank" class="socialContainer rounded bg-[#ff0022]  p-1 containerTwo">
       <Icon class="socialSvg text-white  " size='22px' name="bxl:youtube"></Icon>
@@ -19,16 +20,7 @@ import { Icon } from 'astro-icon/components'
    
   </div>
  
-    <button
-    type="submit"
-    class="flex  gap-2 items-center  shadow-xl text-lg hover:bg-[#D4F4FF] backdrop-blur-md lg:font-medium border-gray-50 hover:text-black hover:transition-all  before:-left-full hover:left-0 hover:rounded-full bg-primary text-gray-50 before:-z-10    relative z-10 px-4 py-2 overflow-hidden rounded-full group"
-  >
-  সমর্থক হোন
-
-    <Icon size="28px" class=" group-hover:text-black text-primary justify-end group-hover:rotate-45 bg-gray-50  ease-linear duration-300 rounded-full border border-primary  group-hover:border group-hover:border-gray-700  p-1" name="mdi:arrow-top-right" ></Icon>
-   
-  </button>
-
+   <PrimaryButton bg="bg-primary"></PrimaryButton>
   
       
 
@@ -37,8 +29,8 @@ import { Icon } from 'astro-icon/components'
 <style>
 
 .socialContainer {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
 
   display: flex;
   align-items: center;
@@ -61,14 +53,9 @@ import { Icon } from 'astro-icon/components'
   transition-duration: 0.3s;
 }
 
-.socialSvg {
-
-}
-
-
 
 .socialContainer:hover .socialSvg {
-  animation: slide-in-top 0.3s both;
+  animation: slide-in-top 0.6s both;
 }
 
 @keyframes slide-in-top {

@@ -1,18 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
 <div class="cards flex justify-between mx-24 my-16 text-3xl gap-8">
-    <div class="card bg-[#25b0e5]">
-        <p class="tip">সমর্থক ফরম</p>
-        
+    <div class="card justify-center bg-[#25b0e5]">
+    <div class=" flex items-center gap-4 cardContent">
+      <div>
+        <div  class="bg-white rounded p-2"><Icon size="32px" name="fluent-color:form-24"></Icon></div>
+      </div>
+      
+      <p class="tip">সমর্থক ফরম</p>
+    </div>       
     </div>
-    <div class="card  bg-[#9F4C99]">
-        <p class="tip">সংবাদ</p>
-       
+
+    <div class="card justify-center bg-[#9F4C99]">
+    <div class=" flex items-center gap-4 cardContent">
+      <div>
+        <div  class="bg-white rounded p-2"><Icon size="32px" name="fluent-color:news-24"></Icon></div>
+      </div>
+      <p class="tip">সংবাদ</p>
+    </div>      
     </div>
-    <div class="card bg-[#00C7E4]">
+
+    <div class="card justify-center bg-[#00C7E4]">
+      <div class=" flex items-center gap-4 cardContent">
+           <div>
+            <div  class="bg-white rounded p-2"><Icon size="32px" name="fluent-color:book-24"></Icon></div>
+           </div>
         <p class="tip">সিলেবাস</p>
+      </div>
+   
         
     </div>
-    <div class="card bg-[#6C84D4]">
-        <p class="tip">শিক্ষাবৃত্তির আবেদন </p>
+    <div class="card justify-center bg-[#6C84D4]">
+    <div class=" flex items-center gap-4 cardContent">
+      <div>
+        <div  class="bg-white rounded p-2"><Icon size="32px" name="fluent-color:gift-24"></Icon></div>
+      </div>
+      <p class="tip">শিক্ষাবৃত্তির আবেদন </p>
+    </div>
         
     </div>
 </div>
@@ -21,11 +47,11 @@
 
 
 .cards .card {
-    padding: 24px 0px;
+    padding: 18px ;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  /* align-items: center;
+  justify-content: center; */
+
     width: 100%;
   border-radius: 6px;
   color: white;
@@ -40,5 +66,20 @@
   transform: scale(1.1, 1.1);
 }
 
+.card:hover .cardContent{
+  animation: slide-in-top 0.9s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 </style>
