@@ -4,7 +4,7 @@ import logo from '../../../assets/logo.svg'
 ---
 
 
-<div class="w-full sticky top-0 h-18 z-10  text-secondary header">
+<div class="w-full sticky top-0 h-18 z-50  text-secondary header">
   <div class=" bg-primary absolute w-full h-full z-[-1] header-bg">
 
   </div>
@@ -43,16 +43,31 @@ import logo from '../../../assets/logo.svg'
     :root{
       --secondary:#d4f4ff
     }
+    .header{
+      transform-origin: left top;
+      animation: shrink-header linear forwards;
+      animation-timeline: scroll();
+      animation-range: 200px 200px;
+
+    }
+    @keyframes shrink-header{
+     
+      to{
+        
+        position: fixed;
+      }
+    }
     /* navbar animation */
     .header-bg{
       transform-origin: left top;
-      animation: shrink-header linear forwards;
+      animation: shrink-bg linear forwards;
       animation-timeline: scroll();
       animation-range: 52px 200px;
 
     }
-    @keyframes shrink-header{
+    @keyframes shrink-bg{
       to{
+        
         transform: scaleY(0.9);
       }
     }
