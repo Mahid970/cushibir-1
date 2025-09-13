@@ -3,177 +3,262 @@ import { Image } from 'astro:assets';
 import logo from '../../../assets/logo.svg'
 ---
 
-
-<div class="w-full sticky top-0 h-18 z-50  text-secondary header">
-  <div class=" bg-primary absolute w-full h-full z-[-1] header-bg">
-
-  </div>
-  <div class="  flex items-center  mx-24 justify-between h-full header-content">
-    <div class="flex items-center gap-4 header-inner mt-[-68px]">
-     <div class="w-[96px] header-img">
-       <Image src={logo} alt='logo'></Image>
-     </div>
-     <div class="header-text flex flex-col">
-       <h3 class="text-3xl font-semibold  ">বাংলাদেশ ইসলামী ছাত্রশিবির</h3>
-       <h4 class=" text-secondary text-xl font-medium">চট্টগ্রাম বিশ্ববিদ্যালয়</h4>
-     </div>
+<nav class="w-full sticky top-0 z-50 navbar-container" style="font-family: 'Noto Sans Bengali', sans-serif; height: 4.5rem;">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-primary navbar-bg"></div>
+  
+  <!-- Content -->
+  <div class="relative flex items-center justify-between h-full px-4 sm:px-8 lg:px-24 navbar-content">
+    
+    <!-- Logo Section -->
+    <div class="flex items-center gap-2 sm:gap-4 lg:mt-[-64px] navbar-logo">
+      <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 navbar-img">
+        <Image src={logo} alt="বাংলাদেশ ইসলামী ছাত্রশিবির লোগো" class="w-full h-full object-contain" />
+      </div>
+      <div class="flex flex-col navbar-text">
+        <h1 class="text-xl lg:text-2xl xl:text-3xl font-semibold text-black leading-tight">
+          বাংলাদেশ ইসলামী ছাত্রশিবির
+        </h1>
+        <h2 class="text-sm lg:text-xl font-medium text-secondary leading-tight">
+          চট্টগ্রাম বিশ্ববিদ্যালয়
+        </h2>
+      </div>
     </div>
-   
-   <div class="flex items-center text-xl header-menu ">
-       <a href="/"><span class="box">
-             
-        হোম</span></a>
-       <a href="/start-learning/"><span class="box">
-             
-        সংক্ষিপ্ত পরিচিতি</span></a>
-       <a href="/tutorial/"><span class="box">
-             
-        দায়িত্বশীলবৃন্দ</span></a>
-       <a href="/about/"><span class="box">
-             
-        ব্লগ</span></a>
-       
-       
-   </div>
-       
-   </div>
-</div>
-  <style>
 
-    :root{
-      --secondary:#d4f4ff
-    }
-    .header{
-      transform-origin: left top;
-      animation: shrink-header linear forwards;
-      animation-timeline: scroll();
-      animation-range: 200px 200px;
+    <!-- Navigation -->
+    <div class="relative">
+      <!-- Mobile Menu Toggle -->
+      <input 
+        type="checkbox" 
+        class="absolute w-8 h-6 z-30 opacity-0 cursor-pointer md:hidden mobile-toggle" 
+        aria-label="মোবাইল মেনু টগল"
+      />
+      
+      <!-- Hamburger Icon -->
+      <div class="relative w-7 h-1 -top-3 bg-white rounded-full cursor-pointer z-20 transition-all duration-300 md:hidden hamburger"></div>
+      
+      <!-- Menu Items -->
+      <div class="flex items-center text-base sm:text-lg lg:text-xl text-secondary navbar-menu">
+        <a href="/" class="block nav-item">
+          <span class="nav-box">হোম</span>
+        </a>
+        <a href="#" class="block nav-item">
+          <span class="nav-box">সংক্ষিপ্ত পরিচিতি</span>
+        </a>
+        <a href="/#" class="block nav-item">
+          <span class="nav-box">দায়িত্বশীলবৃন্দ</span>
+        </a>
+        <a href="/#" class="block nav-item">
+          <span class="nav-box">ব্লগ</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
 
-    }
-    @keyframes shrink-header{
-     
-      to{
-        
-        position: fixed;
-      }
-    }
-    /* navbar animation */
-    .header-bg{
-      transform-origin: left top;
-      animation: shrink-bg linear forwards;
-      animation-timeline: scroll();
-      animation-range: 52px 200px;
+<style>
+  /* Scroll Animations */
+  .navbar-container {
+    transform-origin: left top;
+    animation: shrink-header linear forwards;
+    animation-timeline: scroll();
+    animation-range: 200px 200px;
+  }
 
-    }
-    @keyframes shrink-bg{
-      to{
-        
-        transform: scaleY(0.9);
-      }
-    }
-    .header-img{
-      transform-origin: left top;
-      animation: shrink-image linear forwards;
-      animation-timeline: scroll();
-      animation-range: 0% 200px;
+  .navbar-bg {
+    transform-origin: left top;
+    animation: shrink-bg linear forwards;
+    animation-timeline: scroll();
+    animation-range: 52px 200px;
+  }
 
-    }
-    @keyframes shrink-image{
-      to{
-        transform: scale(0.6) translateY(82px);
-      }
-    }
-    .header-text{
+  .navbar-img {
+    transform-origin: left top;
+    animation: shrink-image linear forwards;
+    animation-timeline: scroll();
+    animation-range: 0% 200px;
+  }
+
+  .navbar-text {
+    color: black;
+    transform-origin: left top;
+    animation: shrink-text linear forwards;
+    animation-timeline: scroll();
+    animation-range: 0% 200px;
+  }
+
+  .navbar-menu {
+    transform-origin: left top;
+    animation: shrink-menu linear forwards;
+    animation-timeline: scroll();
+    animation-range: 52px 200px;
+  }
+
+  /* Scroll Animation Keyframes */
+  @keyframes shrink-header {
+    to { position: fixed; }
+  }
+
+  @keyframes shrink-bg {
+    to { transform: scaleY(0.9); }
+  }
+
+  @keyframes shrink-image {
+    to { transform: scale(0.6) translateY(82px); }
+  }
+
+  @keyframes shrink-text {
+    from {
+      gap: 6px;
       color: black;
-      transform-origin: left top;
-      animation: shrink-text linear forwards;
-      animation-timeline: scroll();
-      animation-range: 0% 200px;
-
     }
-    @keyframes shrink-text{
-      from{
-        gap: 6px;
-        color: black;
-      }
-      to{
-       gap: 0px;
-        color: white;
-        transform: scale(0.8) translateX(-52px)  translateY(52px);
-      }
+    to {
+      gap: 0px;
+      color: white;
+      transform: scale(0.8) translateX(-52px) translateY(52px);
     }
-    .header-menu{
-      transform-origin: left top;
-      animation: shrink-menu linear forwards;
-      animation-timeline: scroll();
-      animation-range: 52px 200px;
+  }
 
+  @keyframes shrink-menu {
+    to { transform: scale(0.8) translateY(4px) translateX(96px); }
+  }
+
+  /* Navigation Box Effects */
+  .nav-box {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: 12px 16px;
+    margin: 0 4px;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.5s;
+    float: left;
+    background: transparent;
+  }
+
+  .nav-box::before,
+  .nav-box::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 2px;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+  }
+
+  .nav-box::before {
+    left: 0;
+    bottom: 0;
+    border-bottom: 2px solid transparent;
+    border-left: 2px solid transparent;
+    transform: translateX(100%);
+  }
+
+  .nav-box::after {
+    top: 0;
+    left: 0;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    transform: translateX(-100%);
+  }
+
+  .nav-box:hover::before {
+    border-color: #d4f4ff;
+    height: 100%;
+    transform: translateX(0);
+    transition: 0.3s transform linear, 0.3s height linear 0.3s;
+  }
+
+  .nav-box:hover::after {
+    border-color: #d4f4ff;
+    height: 100%;
+    transform: translateX(0);
+    transition: 0.3s transform linear, 0.3s height linear 0.5s;
+  }
+
+  /* Hamburger Animation */
+  .hamburger::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 4px;
+    background: white;
+    border-radius: 9999px;
+    top: 15px;
+    transition: all 0.3s;
+  }
+
+  .mobile-toggle:checked ~ .hamburger {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .mobile-toggle:checked ~ .hamburger::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+
+  .mobile-toggle:checked ~ .navbar-menu {
+    left: 0;
+    width: 100%;
+  }
+
+  /* Mobile Styles */
+  @media screen and (max-width: 767px) {
+    .navbar-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      width: 0;
+      height: 100%;
+      overflow: hidden;
+      z-index: 10;
+      transition: width 0.5s;
+      background-color: rgb(15, 73, 199);
     }
-    @keyframes shrink-menu{
-      to{
-        transform: scale(0.8) translateY(4px) translateX(96px);
-      }
+
+    .nav-box {
+      padding: 8px 12px;
+      margin: 0 4px;
+      font-size: 0.875rem;
+    }
+  }
+
+  /* Small Mobile */
+  @media screen and (max-width: 480px) {
+    .navbar-logo {
+      margin-top: -2rem;
     }
 
+    .navbar-text h1 {
+      font-size: 0.875rem;
+    }
 
-   /* menu item animation */ 
-.box {
+    .navbar-text h2 {
+      font-size: 0.75rem;
+    }
 
-  height: auto;
-  float: left;
-  transition: .5s linear;
-  position: relative;
-  display: block;
-  overflow: hidden;
-  padding: 12px;
-  text-align: center;
-  margin: 0 5px;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 500;
-}
+    .nav-box {
+      padding: 8px 8px;
+      margin: 0 2px;
+      font-size: 0.75rem;
+    }
+  }
 
-.box:before {
-  position: absolute;
-  content: '';
-  left: 0;
-  bottom: 0;
-  height: 2px;
-  width: 100%;
-  border-bottom: 2px solid transparent;
-  border-left: 2px solid transparent;
-  box-sizing: border-box;
-  transform: translateX(100%);
-}
+  /* Tablet */
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    .navbar-menu {
+      gap: 0.5rem;
+    }
 
-.box:after {
-  position: absolute;
-  content: '';
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  border-top: 2px solid transparent;
-  border-right: 2px solid transparent;
-  box-sizing: border-box;
-  transform: translateX(-100%);
-}
-
-
-
-.box:hover:before {
-  border-color: #D4F4FF;
-  height: 100%;
-  transform: translateX(0);
-  transition: .3s transform linear, .3s height linear .3s;
-}
-
-.box:hover:after {
-  border-color: #D4F4FF;
-  height: 100%;
-  transform: translateX(0);
-  transition: .3s transform linear, .3s height linear .5s;
-}
-
-
-  </style>
+    .nav-box {
+      padding: 10px 12px;
+      margin: 0 2px;
+    }
+  }
+</style>
